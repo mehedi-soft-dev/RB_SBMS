@@ -1,0 +1,116 @@
+﻿@model RecycleBin.Models.SalesViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Sales Module
+            <i class="fa fa-angle-right"></i> Sale Report
+            <i class="fa fa-angle-right"></i> Sale Details
+        </h4>
+    </div>
+</div>
+
+<div class="text-center"><h3>Sales Details</h3></div>
+
+<div class="adv-table">
+    <table>
+        <tbody>
+            <tr>
+                <td>Date </td>
+                <td> :</td>
+                <td>@Model.Date.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>Customer</td>
+                <td> : </td>
+
+                <td>@Model.Customer.Name</td>
+            </tr>
+            @*<tr>
+                <td>Invoice No</td>
+                <td> : </td>
+
+                <td>@Model.InvoiceNo</td>
+            </tr>*@
+        </tbody>
+    </table>
+</div>
+<br /><br />
+<div class="adv-table">
+    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="myTable">
+        <thead>
+            <tr class="text-center">
+                <td>SL</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>MRP</td>
+                <td>Total MRP</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int sl = 0;
+                double grandTotal = 0;
+                double discountPercentage = 0;
+                double discountAmmount = 0;
+                double payableAmmount = 0;
+            }
+            @foreach (var sd in Model.SalesDetailses)
+            {
+                grandTotal += sd.MRP * sd.Quantity;
+
+                if (grandTotal > 1000)
+                {
+                    discountPercentage = Model.DiscountPercentage;
+                }
+
+                discountAmmount = (grandTotal * discountPercentage) / 100;
+                payableAmmount = grandTotal - discountAmmount;
+
+                <tr>
+                    <td>@(++sl)</td>
+                    <td>@sd.Product.Name</td>
+                    <td class="text-right">@sd.Quantity</td>
+                    <td class="text-right">@sd.MRP/-</td>
+                    <td class="text-right">@(sd.MRP * sd.Quantity)/-</td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">Grand Total</td>
+                <td class="text-right">@grandTotal/-</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">Discount Ammount</td>
+                <td class="text-right">- (@discountPercentage%)   @discountAmmount/-</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">Payable Ammount</td>
+                <td class="text-right">= @payableAmmount/-</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

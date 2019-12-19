@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleBinConsoleApp", "RecycleBinConsoleApp.csproj", "{EA4C9AE7-F4E0-4634-98F3-2C86734AD59C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA4C9AE7-F4E0-4634-98F3-2C86734AD59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4C9AE7-F4E0-4634-98F3-2C86734AD59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4C9AE7-F4E0-4634-98F3-2C86734AD59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4C9AE7-F4E0-4634-98F3-2C86734AD59C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA925583-4135-48BB-A7FF-4B75A46F3499}
+	EndGlobalSection
+EndGlobal

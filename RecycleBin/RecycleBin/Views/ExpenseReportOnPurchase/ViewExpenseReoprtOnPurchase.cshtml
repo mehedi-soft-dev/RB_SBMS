@@ -1,0 +1,75 @@
+﻿@model RecycleBin.Models.PurchaseViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Expense Report Module
+            <i class="fa fa-angle-right"></i> On Purchase
+        </h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <h3 class="text-primary">Expense Reoport on Purchases</h3>
+        </div>
+        
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="myTable">
+                <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Product</th>
+                    <th>Re-Order Level</th>
+                    <th>Available Quantity</th>
+                    <th>Unit Price(Tk)</th>
+                    <th>M.R.P(Tk)</th>
+                    <th>Profit(Tk)</th>
+                </tr>
+                </thead>
+                @{
+                    int sl = 0;
+                    double total = 0;
+                }
+                <tbody>
+                @foreach (var pr in Model.PurchaseViews)
+                {
+                    total += pr.Profit;
+                    <tr>
+                        <td>@(++sl)</td>
+                        <td>@pr.Product</td>
+                        <td>@pr.ReOrderLevel</td>
+                        <td>@pr.Quantity</td>
+                        <td>@pr.UnitPrice</td>
+                        <td>@pr.MRP</td>
+                        <td>@pr.Profit</td>
+                    </tr>
+                }
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>=@total/-</td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

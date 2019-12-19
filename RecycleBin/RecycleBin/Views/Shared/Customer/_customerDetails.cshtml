@@ -1,0 +1,69 @@
+﻿@model RecycleBin.Models.CustomerViewModel
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <h4>Customers Details</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">@Html.ActionLink("Print", "PrintViewToPdf", "Customer")</div>
+            <div class="col-lg-4 form-group">
+                <div class="input-group custom-search-form">
+                    <input id="myInput" type="text" class="form-control" placeholder="Search by Name or Code">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="myTable">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                        <th>E-mail</th>
+                        <th>Loyality Point</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                @{ int sl = 0;}
+                <tbody>
+                    @foreach (var customer in Model.Customers)
+                    {
+                        <tr>
+                            <td>@(++sl)</td>
+                            <td>@customer.Code</td>
+                            <td>@customer.Name</td>
+                            <td>@customer.Address</td>
+                            <td>@customer.Contact</td>
+                            <td>@customer.Email</td>
+                            <td>@customer.LoyalityPoint</td>
+                            <td>@Html.ActionLink("Edit", "Edit", "Customer", new { id = customer.Id }, null)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

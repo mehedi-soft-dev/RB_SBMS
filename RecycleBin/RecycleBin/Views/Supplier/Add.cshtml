@@ -1,0 +1,144 @@
+﻿@model RecycleBin.Models.SupplierViewModel
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Party Module
+            <i class="fa fa-angle-right"></i> Supplier
+        </h4>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Supplier</button>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-title" id="myModalLabel">Add New Supplier</div>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" method="post">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Code)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Code, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Code)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Name)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Name, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Name)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Address)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Address, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Address)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Contact)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Contact, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Contact)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Email)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Email, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Email)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.ContactPerson)</div>
+                                    <div class="col-lg-8">@Html.TextAreaFor(c => c.ContactPerson, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.ContactPerson)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-right">
+                                <div class="row top-right">
+                                    <div class="col-lg-11">
+                                        <button class="btn btn-success" type="reset"><i class="glyphicon glyphicon-refresh"></i> Reset</button>
+                                        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-ok"></i> Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ Html.RenderPartial("Supplier/_supplierDetails", Model); }
+
+@section MySricpt
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Code").focusout(function () {
+                var code = $("#Code").val();
+                var JsonData = { code: code };
+                $.ajax({
+                    url: "/Supplier/IsCodeExist",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (isExist) {
+                        if (isExist) {
+                            $(":submit").attr("disabled", true);
+                            alert("Code Already Exist");
+                        } else {
+                            $(":submit").removeAttr("disabled");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+
+
+            });
+        });
+    </script>
+}
+

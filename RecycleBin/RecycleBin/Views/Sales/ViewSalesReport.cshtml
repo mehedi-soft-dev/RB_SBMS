@@ -1,0 +1,70 @@
+﻿@using RecycleBin.Models
+@model RecycleBin.Models.SalesViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Sales Module
+            <i class="fa fa-angle-right"></i> Sale Report
+        </h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <h3>Sales Report</h3>
+        </div>
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="myTable">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                @{ int sl = 0;}
+                <tbody>
+                    @foreach (var sales in Model.Saleses)
+                    {
+                        <tr>
+                            <td>@(++sl)</td>
+                            <td>@sales.Date.ToShortDateString()</td>
+                            <td>@sales.Customer.Name</td>
+                            <td>@Html.ActionLink("Details", "ViewSalesDetails", "Sales", new { salesId = sales.Id}, null)</td>
+                            @*<td><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Details</button></td>*@
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-title" id="myModalLabel">Purchase Details</div>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>

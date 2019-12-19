@@ -1,0 +1,573 @@
+﻿@model RecycleBin.Models.PurchaseViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Purchase Module
+            <i class="fa fa-angle-right"></i> Purchase
+        </h4>
+        <hr />
+    </div>
+</div>
+
+<form id="dataForm">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Supplier
+                    </div>
+                    <div class="panel-body">
+                        <div class="row text-right">
+                            <div class="col-lg-12">
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-3">@Html.LabelFor(c => c.Date, new { @class = "control-label" })</div>
+                                        <div class="col-lg-9">@Html.TextBoxFor(c => c.Date, null, new { @class = "form-control", @type = "date" })</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-9">@Html.ValidationMessageFor(c => c.Date)</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-3">@Html.LabelFor(c => c.InvoiceNo)</div>
+                                        <div class="col-lg-9">@Html.TextBoxFor(c => c.InvoiceNo, null, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-9">@Html.ValidationMessageFor(c => c.InvoiceNo)</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-3">@Html.LabelFor(c => c.SupplierId)</div>
+                                        <div class="col-lg-9">@Html.DropDownListFor(c => c.SupplierId, Model.SupplierSelectListItems, "-SELECT-", new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-9">@Html.ValidationMessageFor(c => c.SupplierId)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Product
+                </div>
+                <div class="panel-body">
+                    <div class="row text-right">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.CategoryId)</div>
+                                    <div class="col-lg-7">@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems, "-SELECT-", new { id = "CategoryId", @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.CategoryId)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.ProductId)</div>
+                                    <div class="col-lg-7">
+                                        @*@Html.DropDownListFor(c => c.ProductId, Model.ProductSelectListItems, "-SELECT-", new {id = "ProductId", @class = "form-control"})*@
+                                        <select id="ProductId" class="form-control">
+                                            <option value="">-SELECT-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.ProductId)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.Code)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.Code, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.Code)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.AvailableQuantity)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.AvailableQuantity, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.AvailableQuantity)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.ManufacturedDate)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.ManufacturedDate, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.ManufacturedDate)</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.ExpireDate)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.ExpireDate, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.ExpireDate)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.Quantity)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.Quantity, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.Quantity)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.UnitPrice)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.UnitPrice, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.UnitPrice)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.MRP)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.MRP, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.MRP)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.PreviousUnitPrice)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.PreviousUnitPrice, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.PreviousUnitPrice)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.PreviousMRP)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.PreviousMRP, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.PreviousMRP)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5">@Html.LabelFor(c => c.TotalPrice)</div>
+                                    <div class="col-lg-7">@Html.TextBoxFor(c => c.TotalPrice, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.TotalPrice)</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row text-right">
+                            <div class="col-lg-3">@Html.LabelFor(c => c.Remarks)</div>
+                            <div class="col-lg-9">@Html.TextAreaFor(c => c.Remarks, new { @class = "form-control" })</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="button" class="btn btn-success" id="addButton" value="Add">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Purchase Details
+            </div>
+            <div class="panel-body">
+                <div class="row text-right">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-responsive table-striped" id="PurchaseDetailsTable">
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Product</th>
+                                        <th>Manufacute Date</th>
+                                        <th>Expire Date</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>MRP</th>
+                                        <th>Total Price</th>
+                                        <th>Remarks</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row text-right">
+                    <div class="col-lg-12">
+                        <button type="button" id="submitButton" class="btn btn-primary"  data-toggle="modal" data-target="#modalPush">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+                <h4>Purchase Status</h4>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <i class="fa fa-check-circle fa-4x animated rotateIn mb-4 text-info"></i>
+
+                <h3 class="text-primary">Purchase Successfull</h3>
+                <h4 class="text-info">Do you want to Purchase More??</h4>
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                @Html.ActionLink("Yes", "Add", "Purchase", new { @class = "btn btn-success" })
+                @Html.ActionLink("No", "ViewPurchaseReport", "Sale", new { @class = "btn btn-info" })
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var index = 0;
+
+        $("#addButton").click(function () {
+
+            var details = GetPurchaseDetails();
+
+            var detailsRow = GetDetailsRow(details);
+
+            $("#PurchaseDetailsTable").append(detailsRow);
+            index++;
+        });
+
+        function GetPurchaseDetails() {
+
+            var Code = $("#Code").val();
+            var ProductId = parseInt($("#ProductId").val());
+            var ManufacturedDate = $("#ManufacturedDate").val();
+            var ExpireDate = $("#ExpireDate").val();
+            var Quantity = parseInt($("#Quantity").val());
+            var UnitPrice = parseFloat($("#UnitPrice").val());
+            var MRP = parseFloat($("#MRP").val());
+            var TotalPrice = parseFloat($("#TotalPrice").val());
+            var Remarks = $("#Remarks").val();
+
+            return {
+                Code: Code,
+                ProductId: ProductId,
+                ManufacturedDate: ManufacturedDate,
+                ExpireDate: ExpireDate,
+                Quantity: Quantity,
+                UnitPrice: UnitPrice,
+                MRP: MRP,
+                TotalPrice: TotalPrice,
+                Remarks: Remarks
+            }
+        }
+
+        var sl = index;
+
+        function GetDetailsRow(details) {
+
+            var ProductIdHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].ProductId' value='" +
+                details.ProductId +
+                "'></div>";
+            
+            var ManufacturedDateHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].ManufacturedDate' value='" +
+                details.ManufacturedDate +
+                "'></div>";
+            var ExpireDateHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].ExpireDate' value='" +
+                details.ExpireDate +
+                "'></div>";
+            var QuantityHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].Quantity' value='" +
+                details.Quantity +
+                "'></div>";
+            var UnitPriceHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].UnitPrice' value='" +
+                details.UnitPrice +
+                "'></div>";
+            var MRPHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].MRP' value='" +
+                details.MRP +
+                "'></div>";
+            var TotalPriceHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].MRP' value='" +
+                details.TotalPrice +
+                "'></div>";
+            var RemarksHidden = "<input type='hidden' name='PurchaseDetailses[" +
+                index +
+                "].Remarks' value='" +
+                details.Remarks +
+                "'></div>";
+
+            var product = $('#ProductId :selected').text();
+
+            var startTr = "<tr>";
+            var slCell = "<td class='text-success'>" + (++sl) + "</td>";
+            var ProductIdCell =  ProductIdHidden + details.ProductId;
+            var ProductCell = "<td class='text-success'>" + product + "</td>";
+            var ManufacturedDateCell = "<td class='text-success'>" + ManufacturedDateHidden + details.ManufacturedDate + "</td>";
+            var ExpireDateCell = "<td class='text-success'>" + ExpireDateHidden + details.ExpireDate + "</td>";
+            var QuantityCell = "<td class='text-success'>" + QuantityHidden + details.Quantity + "</td>";
+            var UnitPriceCell = "<td class='text-success'>" + UnitPriceHidden + details.UnitPrice + "</td>";
+            var MRPCell = "<td class='text-success'>" + MRPHidden + details.MRP + "</td>";
+            var TotalPriceCell = "<td class='text-success'>" + TotalPriceHidden + details.TotalPrice + "</td>";
+            var RemarksCell = "<td class='text-success'>" + RemarksHidden + details.Remarks + "</td>";
+            var DeleteButtonCell = "<td>" + '<button class="btn-danger">Delete</button>' + "</td>";
+
+            var endTr = "</tr>";
+
+            return (startTr +
+                slCell +
+                ProductCell +
+                ProductIdCell +
+                ManufacturedDateCell +
+                ExpireDateCell +
+                QuantityCell +
+                UnitPriceCell +
+                MRPCell +
+                TotalPriceCell +
+                RemarksCell +
+                DeleteButtonCell +
+                endTr);
+
+        }
+
+        $("#submitButton").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/Purchase/Add",
+                //data: JSON.stringify(purchaseDetailses),
+                data: $("#dataForm").serialize(),
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "json",
+                success: function (r) {
+                }
+            });
+
+        });
+
+        $("#CategoryId").change(function () {
+            var categoryId = $("#CategoryId").val();
+            var JsonData = { categoryId: categoryId };
+
+            $.ajax({
+                url: "/Purchase/GetProductByCategory",
+                type: "Post",
+                data: JsonData,
+                success: function (products) {
+                    $("#ProductId").empty();
+                    $("#ProductId").append('<option value="">-SELECT-</option>');
+                    $.each(products,
+                        function (key, value) {
+                            $("#ProductId").append("<option value=" + value.Id + ">" + value.Name + "</option>");
+
+                        });
+                    $("#Code").val("");
+                    $("#AvailableQuantity").val("");
+
+                },
+                error: function () {
+                    $("#ProductId").empty();
+                    $("#ProductId").append('<option value="">-SELECT-</option>');
+                    $("#Code").val("");
+                    $("#AvailableQuantity").val("");
+
+                },
+            });
+        });
+
+        $("#ProductId").change(function () {
+            var productId = $("#ProductId").val();
+            var JsonData = { productId: productId };
+
+            $.ajax({
+                url: "/Purchase/GetProductDetailsById",
+                type: "Post",
+                data: JsonData,
+                success: function (product) {
+                    $("#Code").val("");
+                    $("#Code").val(product.Code);
+                },
+                error: function () {
+                    $("#Code").val("");
+                }
+            });
+
+            $.ajax({
+                url: "/Purchase/GetTotalPurchaseQuantity",
+                type: "Post",
+                data: JsonData,
+                success: function (data) {
+                    $("#AvailableQuantity").val("");
+                    $("#AvailableQuantity").val(data);
+                },
+                error: function () {
+                    $("#AvailableQuantity").val("");
+                }
+            });
+
+            $.ajax({
+                url: "/Purchase/GetPreviousInfo",
+                type: "Post",
+                data: JsonData,
+                success: function (data) {
+                    $("#PreviousUnitPrice").val(0);
+                    $("#PreviousUnitPrice").val(data.PreviousUnitPrice);
+                    $("#PreviousMRP").val(data.PreviousMRP);
+
+                },
+                error: function () {
+                    $("#PreviousUnitPrice").val(0);
+                    $("#PreviousNRP").val(0);
+                }
+            });
+        });
+
+        $('#Quantity').keyup(function () {
+            if (!isEmptyOrNull($("#Quantity").val()))
+                var quantity = parseInt($("#Quantity").val());
+            else
+                var quantity = 0;
+
+            if (!isEmptyOrNull($("#UnitPrice").val()))
+                var unitPrice = parseInt($("#UnitPrice").val());
+            else
+                var unitPrice = 0;
+
+            $("#TotalPrice").val(quantity * unitPrice);
+
+        });
+
+        $('#UnitPrice').keyup(function () {
+            if (!isEmptyOrNull($("#Quantity").val()))
+                var quantity = parseInt($("#Quantity").val());
+            else
+                var quantity = 0;
+
+            if (!isEmptyOrNull($("#UnitPrice").val())) {
+                var unitPrice = parseInt($("#UnitPrice").val());
+            } else {
+                var unitPrice = 0;
+            }
+
+            $("#TotalPrice").val(quantity * unitPrice);
+            $("#MRP").val(unitPrice + unitPrice * 25 / 100)
+
+        });
+
+        function isEmptyOrNull(value) {
+            if (value === undefined || value === "" || value === isNaN(value)) {
+                return true;
+            }
+            return false;
+        };
+
+
+    });
+        //$(".button.btn-danger").click(function() {
+        //    $(this).closest('tr').remove;
+        //    return false;
+        //});
+
+        //$(document).on("click", "button btn-danger")
+        //{
+        //    $(this).closest('tr').remove;
+        //    return false;
+        //}
+</script>
+

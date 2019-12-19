@@ -1,0 +1,106 @@
+﻿@model RecycleBin.Models.CustomerViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<div class="row">
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Update Customer
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form role="form" method="post">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Code)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Code, null, new { @class = "form-control"})</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Code)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Name)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Name, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Name)</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Address)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Address, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Address)</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Contact)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Contact, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Contact)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.Email)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Email, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Email)</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">@Html.LabelFor(c => c.LoyalityPoint)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.LoyalityPoint, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.LoyalityPoint)</div>
+                                </div>
+                            </div>
+                            <div class="form-group text-right">
+                                <div class="row top-right">
+                                    <div class="col-lg-11">
+                                        <button class="btn btn-success" type="reset"><i class="glyphicon glyphicon-refresh"></i> Reset</button>
+                                        <button id="submitButton" class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-ok"></i> Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section MySricpt
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#submitButton").click(function() {
+                alert("Updated Successfully");
+            });
+        });
+    </script>
+}

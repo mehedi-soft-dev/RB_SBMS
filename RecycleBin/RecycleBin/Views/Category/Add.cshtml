@@ -1,0 +1,98 @@
+﻿@model RecycleBin.Models.CategoryViewModel
+
+@{Layout = "~/Views/Shared/_Layout.cshtml";}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Product Catalog Module
+            <i class="fa fa-angle-right"></i> Category
+        </h4>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Category</button>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-title" id="myModalLabel">Add New Category</div>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" method="post">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2">@Html.LabelFor(c => c.Code)</div>
+                                    <div class="col-lg-10">@Html.TextBoxFor(c => c.Code, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-10">@Html.ValidationMessageFor(c => c.Code, null, new{ style = "color: red" })</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2">@Html.LabelFor(c => c.Name)</div>
+                                    <div class="col-lg-10">@Html.TextBoxFor(c => c.Name, null, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-10">@Html.ValidationMessageFor(c => c.Name, null, new { style = "color: red" })</div>
+                                </div>
+                            </div>
+                            <div class="form-group text-right">
+                                <div class="row top-right">
+                                    <div class="col-lg-12">
+                                        <button class="btn btn-success" type="reset"><i class="glyphicon glyphicon-refresh"></i> Reset</button>
+                                        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-ok"></i> Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ Html.RenderPartial("Category/_categoryDetails", Model); }
+
+
+@section MySricpt
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#Code").focusout(function () {
+                var code = $("#Code").val();
+                var JsonData = { code: code };
+                $.ajax({
+                    url: "/Category/IsCodeExist",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (isExist) {
+                        if (isExist) {
+                            $(":submit").attr("disabled", true);
+                            alert("Code Already Exist");
+                        } else {
+                            $(":submit").removeAttr("disabled");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+
+                
+            });
+        });
+    </script>
+}

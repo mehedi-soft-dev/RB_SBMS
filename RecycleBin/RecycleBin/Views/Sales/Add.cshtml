@@ -1,0 +1,543 @@
+﻿@model RecycleBin.Models.SalesViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <i class="fa fa-home"></i>
+            Sales Module
+            <i class="fa fa-angle-right"></i> Sale
+        </h4>
+        <hr />
+    </div>
+</div>
+
+
+<form id="dataForm">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Customer
+                </div>
+                <div class="panel-body">
+                    <div class="row text-right">
+                        <div class="col-lg-12">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.Date)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Date, null, new { @class = "form-control", type = "date" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Date)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.CustomerId)</div>
+                                    <div class="col-lg-8">@Html.DropDownListFor(c => c.CustomerId, Model.CustomerSelectListItems, "-SELECT-", new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.CustomerId)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.LoyalityPoint)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.LoyalityPoint, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.LoyalityPoint)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Product
+                </div>
+                <div class="panel-body">
+                    <div class="row text-right">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.CategoryId)</div>
+                                    <div class="col-lg-8">@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems, "-SELECT-", new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.CategoryId)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.ProductId)</div>
+                                    <div class="col-lg-8">
+                                       @*@Html.DropDownListFor(c => c.ProductId, Model.ProductSelectListItems, "-SELECT-", new {id = "ProductId", @class = "form-control"})*@
+                                        <select id="ProductId" class="form-control">
+                                            <option value="">-SELECT-</option>
+                                        </select>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.ProductId)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.AvailableQuantity)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.AvailableQuantity, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.Id)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.Quantity)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.Quantity, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">@Html.ValidationMessageFor(c => c.Quantity)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.MRP)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.MRP, new { @class = "form-control" })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.MRP)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">@Html.LabelFor(c => c.TotalMRP)</div>
+                                    <div class="col-lg-8">@Html.TextBoxFor(c => c.TotalMRP, new { @class = "form-control", disabled = true })</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-8">@Html.ValidationMessageFor(c => c.TotalMRP)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="button" class="btn btn-success" id="addButton" value="Add">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Sales Details
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-responsive table-striped" id="PurchaseDetailsTable">
+                                <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>MRP</th>
+                                    <th>Total Price</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row form-group">
+                        <div class="col-lg-8 text-right">@Html.LabelFor(c=>c.GrandTotal)</div>
+                        <div class="col-lg-3 text-left">@Html.TextBoxFor(c=>c.GrandTotal, new{@class="form-control"})</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-8 text-right">@Html.LabelFor(c => c.DiscountPercentage)</div>
+                        <div class="col-lg-3 text-left">@Html.TextBoxFor(c => c.DiscountPercentage, new { @class = "form-control" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-8 text-right">@Html.LabelFor(c => c.DiscountAmmount)</div>
+                        <div class="col-lg-3 text-left">@Html.TextBoxFor(c => c.DiscountAmmount, new { @class = "form-control" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-8 text-right">@Html.LabelFor(c => c.PayableAmmount)</div>
+                        <div class="col-lg-3 text-left">@Html.TextBoxFor(c => c.PayableAmmount, new { @class = "form-control" })</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row text-right">
+                    <div class="col-lg-12">
+                        <button type="button" id="submitButton" class="btn btn-primary"  data-toggle="modal" data-target="#modalPush">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+                <h4>Sales Status</h4>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <i class="fa fa-check-circle fa-4x animated rotateIn mb-4 text-info"></i>
+
+                <h3 class="text-primary">Sale Successfull</h3>
+                <h4 class="text-info">Do you want to Sales More??</h4>
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                @Html.ActionLink("Yes", "Add", "Sale", new { @class = "btn btn-success" })
+                @Html.ActionLink("No", "ViewSalesReport", "Sale", new { @class = "btn btn-info" })
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var index = 0;
+            var grandTotal = 0;
+            var unitPrice = 0;
+            $("#Quantity").keyup(function () {
+
+                if (parseInt($("#Quantity").val()) > parseInt($("#AvailableQuantity").val())) {
+                    alert("Not Enough Quantity");
+                    $("#TotalMRP").val(0);
+                    $("#UnitPrice").val(0);
+                    return exit;
+                }
+
+                if (!IsNullOrEmpty($("#Quantity").val()))
+                    var Quantity = parseInt($("#Quantity").val());
+                else
+                    var Quantity = 0;
+
+                if (!IsNullOrEmpty($("#MRP").val()))
+                    var MRP = parseFloat($("#MRP").val());
+                else
+                    var MRP = 0;
+
+                $("#TotalMRP").text = Quantity + MRP;
+
+            });
+
+            $("#MRP").keyup(function () {
+
+                if (!IsNullOrEmpty($("#Quantity").val()))
+                    var Quantity = parseInt($("#Quantity").val());
+                else
+                    var Quantity = 0;
+
+                if (!IsNullOrEmpty($("#MRP").val()))
+                    var MRP = parseFloat($("#MRP").val());
+                else
+                    var MRP = 0;
+
+                $("#TotalMRP").text = Quantity + MRP;
+
+            });
+
+            function IsNullOrEmpty(value) {
+                if (value === null || value === "" || isNaN(value))
+                    return true;
+                else
+                    return false;
+            }
+
+            $("#addButton").click(function () {
+
+                var details = GetPurchaseDetails();
+
+                var detailsRow = GetDetailsRow(details);
+
+                $("#PurchaseDetailsTable").append(detailsRow);
+                index++;
+
+                grandTotal = parseInt($("#GrandTotal").val()) + parseInt($("#TotalMRP").val());
+                $("#GrandTotal").val(grandTotal);
+
+                var dis = parseInt($("#LoyalityPoint").val()/10);
+               
+                $("#DiscountPercentage").val(dis);
+
+                var discountAmmount = (grandTotal * dis) / 100;
+                $("#DiscountAmmount").val(discountAmmount);
+
+                var payableAmmount = grandTotal - discountAmmount;
+                $("#PayableAmmount").val(payableAmmount);
+
+
+
+            });
+
+            function GetPurchaseDetails() {
+
+                var ProductId = parseInt($("#ProductId").val());
+                var Quantity = parseInt($("#Quantity").val());
+                var UnitPrice = unitPrice;
+                var MRP = parseFloat($("#MRP").val());
+                var TotalMRP = parseFloat($("#TotalMRP").val());
+
+                return { ProductId: ProductId, Quantity: Quantity,UnitPrice: UnitPrice, MRP: MRP, TotalMRP: TotalMRP }
+            }
+
+            var sl = index;
+
+            function GetDetailsRow(details) {
+
+
+
+                var productIdHidden = "<input type='hidden' name='SalesDetailses[" +
+                    index +
+                    "].ProductId' value='" +
+                    details.ProductId +
+                    "'></div>";
+                var QuantityHidden = "<input type='hidden' name='SalesDetailses[" +
+                    index +
+                    "].Quantity' value='" +
+                    details.Quantity +
+                    "'></div>";
+                var UnitPriceHidden = "<input type='hidden' name='SalesDetailses[" +
+                    index +
+                    "].UnitPrice' value='" +
+                    details.UnitPrice  +
+                    "'></div>";
+
+                var MRPHidden = "<input type='hidden' name='SalesDetailses[" +
+                    index +
+                    "].MRP' value='" +
+                    details.MRP +
+                    "'></div>";
+                var TotalMRPHidden = "<input type='hidden' name='SalesDetailses[" +
+                    index +
+                    "].MRP' value='" +
+                    details.TotalPrice +
+                    "'></div>";
+
+                var product = $('#ProductId :selected').text();
+
+                var startTr = "<tr>";
+                var SlCell = "<td class='text-success'>" + (++sl) + "</td>";
+                var ProductIdCell = productIdHidden + details.ProductId;
+                var ProductCell = "<td class='text-success'>" + product + "</td>";
+                var UnitPriceCell = UnitPriceHidden + details.UnitPrice;
+                var QuantityCell = "<td class='text-success'>" + QuantityHidden + details.Quantity + "</td>";
+                var MRPCell = "<td class='text-success'>" + MRPHidden + details.MRP + "</td>";
+                var TotalMRPCell = "<td class='text-success'>" + TotalMRPHidden + details.TotalMRP + "</td>";
+                var DeleteButtonCell = "<td>" + '<button class="btn-danger">Delete</button>' + "</td>";
+                var endTr = "</tr>";
+
+                return (startTr + SlCell + ProductCell + ProductIdCell + QuantityCell + UnitPriceCell + MRPCell + TotalMRPCell + DeleteButtonCell + endTr);
+
+            }
+
+            $("#submitButton").click(function () {
+
+                var customerId = $("#CustomerId").val();
+                var point = $("#LoyalityPoint").val() - $("#DiscountPercentage").val() + parseInt(grandTotal/1000);
+                var JsonData = { customerId: customerId, point : point };
+
+                $.ajax({
+                    url: "/Sales/UpdateCustomer",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (value) {
+                        
+                    },
+                    error: function () {
+                        alert("Loyality Prob...!");
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Sales/Add",
+                    //data: JSON.stringify(purchaseDetailses),
+                    data: $("#dataForm").serialize(),
+                    //contentType: "application/json; charset=utf-8",
+                    //dataType: "json",
+                    success: function() {
+                        //alert("Successful..!");
+                    }
+                });
+
+            });
+            $("#CategoryId").change(function () {
+                var categoryId = $("#CategoryId").val();
+                var JsonData = { categoryId: categoryId };
+
+                $.ajax({
+                    url: "/Purchase/GetProductByCategory",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (products) {
+                        $("#ProductId").empty();
+                        $("#ProductId").append('<option value="">-SELECT-</option>');
+                        $.each(products,
+                            function (key, value) {
+                                $("#ProductId").append("<option value=" + value.Id + ">" + value.Name + "</option>");
+
+                            });
+                        $("#Code").val("");
+                        $("#AvailableQuantity").val("");
+
+                    },
+                    error: function () {
+                        $("#ProductId").empty();
+                        $("#ProductId").append('<option value="">-SELECT-</option>');
+                        $("#Code").val("");
+                        $("#AvailableQuantity").val("");
+
+                    },
+                });
+            });
+            $("#ProductId").change(function () {
+                var productId = $("#ProductId").val();
+                var JsonData = { productId: productId };
+
+                $.ajax({
+                    url: "/Purchase/GetProductMRP",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (data) {
+                        $("#MRP").val("");
+                        $("#MRP").val(data);
+                    },
+                    error: function () {
+                        $("#MRP").val("");
+                    }
+                });
+                $.ajax({
+                    url: "/Purchase/GetTotalPurchaseQuantity",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (data) {
+                        $("#AvailableQuantity").val("");
+                        $("#AvailableQuantity").val(data);
+                    },
+                    error: function () {
+                        $("#AvailableQuantity").val("");
+                    }
+                });
+
+                $.ajax({
+                    url: "/Sales/GetLastUnitPrice",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (data) {
+                        unitPrice = data.LastUnitPrice;
+                    },
+                    error: function () {
+                    }
+                });
+            });
+
+            $("#CustomerId").change(function () {
+                var customerId = $("#CustomerId").val();
+                var JsonData = { customerId: customerId };
+
+                $.ajax({
+                    url: "/Sales/GetCustomerDetailsById",
+                    type: "Post",
+                    data: JsonData,
+                    success: function (customer) {
+                        $("#LoyalityPoint").val("");
+                        $("#LoyalityPoint").val(customer.LoyalityPoint);
+                    },
+                    error: function () {
+                        $("#LoyalityPoint").val("");
+                    }
+                });
+
+            });
+
+            $('#Quantity').keyup(function () {
+                if (!isEmptyOrNull($("#Quantity").val()))
+                    var quantity = parseInt($("#Quantity").val());
+                else
+                    var quantity = 0;
+
+                if (!isEmptyOrNull($("#MRP").val()))
+                    var unitPrice = parseInt($("#MRP").val());
+                else
+                    var unitPrice = 0;
+
+                $("#TotalMRP").val(quantity * unitPrice);
+
+            });
+
+            $('#MRP').keyup(function () {
+                if (!isEmptyOrNull($("#Quantity").val()))
+                    var quantity = parseInt($("#Quantity").val());
+                else
+                    var quantity = 0;
+
+                if (!isEmptyOrNull($("#MRP").val())) {
+                    var unitPrice = parseInt($("#MRP").val());
+                } else {
+                    var unitPrice = 0;
+                }
+
+                $("#TotalMRP").val(quantity * unitPrice);
+
+            });
+
+            function isEmptyOrNull(value) {
+                if (value === undefined || value === "" || value === isNaN(value)) {
+                    return true;
+                }
+                return false;
+            };
+        });
+    </script>
+

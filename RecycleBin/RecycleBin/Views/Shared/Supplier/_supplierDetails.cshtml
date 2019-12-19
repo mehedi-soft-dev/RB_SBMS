@@ -1,0 +1,66 @@
+﻿@model RecycleBin.Models.SupplierViewModel
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <h4>Supplier Details</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">@Html.ActionLink("Print", "PrintViewToPdf", "Supplier")</div>
+            <div class="col-lg-4 form-group">
+                <div class="input-group custom-search-form">
+                    <input id="myInput" type="text" class="form-control" placeholder="Search by Name or Code">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered table-responsive" id="myTable">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                        <th>E-mail</th>
+                        <th>Contact Person</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                @{ int sl = 0;}
+                <tbody>
+                    @foreach (var supplier in Model.Suppliers)
+                    {
+                        <tr>
+                            <td>@(++sl)</td>
+                            <td>@supplier.Code</td>
+                            <td>@supplier.Name</td>
+                            <td>@supplier.Address</td>
+                            <td>@supplier.Contact</td>
+                            <td>@supplier.Email</td>
+                            <td>@supplier.ContactPerson</td>
+                            <td>@Html.ActionLink("Edit", "Edit", "Supplier", new { id = supplier.Id }, null)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
